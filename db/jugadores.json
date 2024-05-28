@@ -1,0 +1,78 @@
+{
+  "jugador": [
+    {
+      "id": 1,
+      "nombre": "Laura",
+      "resultado": [],
+      "passwd": "passwd"
+    },
+    {
+      "id": 2,
+      "nombre": "Carlos",
+      "resultado": [
+        10,
+        90,
+        14,
+        64,
+        20,
+        20,
+        21,
+        22,
+        23,
+        24,
+        44,
+        45,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        21
+      ],
+      "passwd": "passwd"
+    },
+    {
+      "id": 3,
+      "nombre": "Juan",
+      "resultado": [
+        15,
+        19,
+        14,
+        16,
+        22,
+        8,
+        15,
+        11
+      ],
+      "passwd": "passwd"
+    },
+    {
+      "id": 4,
+      "nombre": "Jose",
+      "resultado": [],
+      "passwd": "passwd"
+    },
+    {
+      "id": 5,
+      "nombre": "Miguel",
+      "resultado": [],
+      "passwd": "passwd"
+    }
+  ],
+  "ganadores": [
+    {
+      "fecha": "12/11/2023",
+      "ganador": "Juan",
+      "bolas": 8,
+      "id": 1
+    },
+    {
+      "fecha": "13/11/2023",
+      "ganador": "Manuel",
+      "bolas": 10,
+      "id": 2
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+html,
+body {
+    margin: 0;
+    //background-color: rgb(178, 243, 238);
+}
+
+img {
+    width: 150px;
+}
+
+.bingo {
+    color: red;
+}
+
+td {
+    width: 73px;
+    height: 30px;
+    text-align: center;
+}
+
+#jugando {
+    text-align: center;
+    font-size: 48px;
+    width: 363px;
+}
+
+#resultado {
+    text-align: center;
+    font-size: 28px;
+    width: 363px;
+}
+
+button[disabled=disabled], button:disabled {
+    border: 1px solid #999999;
+    background-color: rgba(204, 204, 204, 0.1);
+    color: #666666;
+}
