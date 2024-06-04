@@ -12,6 +12,7 @@ function jugador_cargar(id, nombre, resultado) {
 }
 
 let enJuego = {
+    //estos datos se van actualizando mientras se juega
     bolas: [],
     carton: [],
     bolasPremiadas: [],
@@ -25,4 +26,5 @@ function enJuego_reset() {
     enJuego.carton = [];
     enJuego.bolasPremiadas = [];
     enJuego.bolasJugadas = 0;
+    localStorage.removeItem('enJuego');
 }

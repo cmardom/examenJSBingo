@@ -21,6 +21,7 @@ let bolasDesordenadas = [];
 let squares = [];
 let contadorAcertadas = [];
 let jugadores = [];
+let nuevasBolas = [];
 
 //botones desactivados hasta que se inicia sesión
 botonStart.setAttribute("disabled", "true");
@@ -64,6 +65,7 @@ botonCerrarSesion.addEventListener('click', () =>{
 let jugadorGuardadoLocalStorage = localStorage.getItem('jugador');
 if (!!jugadorGuardadoLocalStorage){
     jugador = JSON.parse(jugadorGuardadoLocalStorage);
+    iniciarSesion(jugador);
 }
 
 
@@ -73,6 +75,15 @@ let partidaGuardadaLocalStorage = localStorage.getItem('partida');
 if (!!partidaGuardadaLocalStorage){
     enJuego = JSON.parse(partidaGuardadaLocalStorage);
 
+    nuevasBolas = enJuego.bolas;
+    numeros24 = enJuego.carton;
+    contadorAcertadas = enJuego.bolasPremiadas;
+
+    asignarSquares();
+    sacarBola();
+
+
+} else {
 }
 
 

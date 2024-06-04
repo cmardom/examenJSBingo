@@ -32,10 +32,17 @@ function cogerNumeros(array90){
 
 function asignarSquares(){
     let square;
+
     for (let i = 0; i <= 23; i++){
         square = document.getElementById("square"+i);
         square.innerText=numeros24[i];
         squares[i] = square;
+
+        if (!contadorAcertadas.indexOf(numeros24[i])){
+            squares[i].classList.add('bg-info', 'text-white');
+        } else {
+            squares[i].className="";
+        }
     }
 
     //activar botón jugar cuando se pinte el cartón
@@ -45,11 +52,13 @@ function asignarSquares(){
 
 
 function sacarBola(){
+
+
     let contador=0;
 
     interval = setInterval(() => {
         bolas = _.shuffle(numeros90);
-        let nuevasBolas = bolas;
+        nuevasBolas = bolas;
         enJuego.bolas = nuevasBolas;
         enJuego.carton = numeros24;
 
@@ -61,19 +70,17 @@ function sacarBola(){
         }
 
         contador++;
+        //guardar partida en localStorage
+        localStorage.setItem('enJuego', JSON.stringify(enJuego));
 
         enJuego.bolasPremiadas = contadorAcertadas;
         enJuego.bolasJugadas = nuevasBolas.slice(0, contador);
 
 
-
-        //no se guardan los datos correctos!!
-        guardarPartidaLocalStorage(enJuego);
-
-
         //condición para acabar
         if (contadorAcertadas.length >= 5) {
-            resultado.innerText = "se han sacado " + contador + " bolas: " + contadorAcertadas;
+            resultado.innerText = "se han sacado " + contadorAcertadas.length + " bolas: " + contadorAcertadas;
+            jugador.resultado.push(contadorAcertadas);
             clearInterval(interval);
         }
     }, 100);
@@ -84,26 +91,27 @@ function consultarUsuario(){
 
     obtenerJugadores().then(resp=>{
         jugadores = resp;
-        let jugador = jugadores.find((x) => x.nombre == inputUsuario.value);
+        jugador = jugadores.find((x) => x.nombre == inputUsuario.value);
         if (jugador){
             if (jugador.passwd === inputContrasena.value){
-                guardarJugadorLocalStorage(jugador);
 
-                //si inicia sesión correctamente:
-                botonJugar.removeAttribute("disabled");
-                botonCerrarSesion.hidden = false;
-                inputUsuario.hidden = true;
-                inputContrasena.hidden = true;
-                botonConsultar.hidden = true;
-                etqSaludo.innerText = "Hola, " + jugador.nombre;
+               iniciarSesion(jugador);
 
+               //guardar sesión en localstorage
+                localStorage.setItem('jugador', JSON.stringify(jugador));
             }
         }
     });
+}
 
-
-
-
+function iniciarSesion(jugador){
+    //si inicia sesión correctamente:
+    botonJugar.removeAttribute("disabled");
+    botonCerrarSesion.hidden = false;
+    inputUsuario.hidden = true;
+    inputContrasena.hidden = true;
+    botonConsultar.hidden = true;
+    etqSaludo.innerText = "Hola, " + jugador.nombre;
 }
 
 
@@ -117,16 +125,8 @@ function cerrarSesion(){
     botonConsultar.hidden = false;
     etqSaludo.innerText="";
 
+    //cerrar sesión en localstorage
     localStorage.removeItem('jugador');
     localStorage.removeItem('partida');
 
-}
-
-function guardarJugadorLocalStorage(jugador){
-    localStorage.setItem('jugador', JSON.stringify(jugador));
-
-}
-
-function guardarPartidaLocalStorage(partida){
-    localStorage.setItem('partida', JSON.stringify(partida));
 }
